@@ -26,6 +26,10 @@
         return Todo::count();
     });
 
+    $todos = computed(
+        fn () => Todo::get(),
+    );
+
 
 ?>
 
@@ -41,4 +45,10 @@
     @error('content')
         <span>{{ $message }}</span>
     @enderror
+
+    <br><br>
+
+    @foreach ($this->todos as $todo)
+        {{ $todo->content }} <br>
+    @endforeach
 </div>
