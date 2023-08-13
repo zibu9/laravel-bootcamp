@@ -33,22 +33,28 @@
 
 ?>
 
-<div>
-    AllTask : {{ $this->count }}
-    <form wire:submit.prevent="addTodo">
-        <label for="content">
-            content
-        </label>
-        <input type="text" id="content" wire:model="content">
-        <button type="submit">Add Task</button>
-    </form>
-    @error('content')
-        <span>{{ $message }}</span>
-    @enderror
+@extends('layouts.app')
 
-    <br><br>
+@section('content')
+    @volt('count')
+        <div>
+            AllTask : {{ $this->count }}
+            <form wire:submit.prevent="addTodo">
+                <label for="content">
+                    content
+                </label>
+                <input type="text" id="content" wire:model="content">
+                <button type="submit">Add Task</button>
+            </form>
+            @error('content')
+                <span>{{ $message }}</span>
+            @enderror
 
-    @foreach ($this->todos as $todo)
-        {{ $todo->content }} <br>
-    @endforeach
-</div>
+            <br><br>
+
+            @foreach ($this->todos as $todo)
+                {{ $todo->content }} <br>
+            @endforeach
+        </div>
+    @endvolt
+@endsection
